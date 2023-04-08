@@ -9,7 +9,7 @@ const Navbar = () => {
             <div name='logo'>
                 <img src={Logo} alt="error" className='w-20' />
             </div>
-            <div name='links' className='flex gap-3 text-sm'>
+            <div name='links' className='flex gap-3 text-sm items-center'>
 
                 <Link to='/?cat=art'>ART</Link>
                 <Link to='/?science'>SCIENCE</Link>

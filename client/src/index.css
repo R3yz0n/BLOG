@@ -8,5 +8,9 @@
 }
 
 .b {
-  border: 1px solid red;
+  border: 1px solid black;
+}
+
+.img-card {
+  box-shadow: 5px 5px 3px rgb(169, 164, 164);
 }
