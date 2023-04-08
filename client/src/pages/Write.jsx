@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 
 const Write = () => {
     const [value, setValue] = useState('');
+    console.log(value);
     return (
         <section className='w-screen min-h-[80vh] flex max-w-screen-lg mx-auto py-10'>
 
@@ -16,8 +17,12 @@ const Write = () => {
 
 
             <aside className='w-1/3'>
-                <p>Publish</p>
-                <p>Status:Draft</p>
+                <span>
+                    <b>Status </b> Draft
+                    <b>Visiblity:</b> Public
+                </span>
+
+                <input type="text" name='' id='' />
             </aside>
 
 
