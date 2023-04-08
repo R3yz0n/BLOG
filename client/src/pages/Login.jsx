@@ -8,7 +8,7 @@ const Login = () => {
         <div name='login' className='b flex flex-col w-screen h-screen'>
 
 
-
+{/* changed */}
             <form className='flex flex-col w-1/3 border-2 m-auto h-[400px] p-10 gap-4'>
                 <h1 className='text-xl mx-auto'>Login</h1>
 
