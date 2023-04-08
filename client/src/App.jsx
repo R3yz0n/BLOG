@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
@@ -9,42 +9,44 @@ import Footer from "./components/Footer";
 
 
 function App() {
+
+  const { pathname } = useLocation();
   return (
-    <div className="app">
-      <div className=" container">
-        <Routes>
+    <>
+      {
+        ((!(pathname === '/login')) && (!(pathname === '/register'))) && <Navbar />
 
-          <Route path="/" element={
-            <>
-              <Layout children={
-                <>
-                  <Home />
-                  <Single />
-                </>
+      }
 
-              } />
 
-            </>}
-          />
+      <Routes>
 
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="write" element={<Write />} />
-          <Route path="post/:id" element={<Single />} />
-        </Routes>
-      </div>
-    </div>
+
+        <Route path='/' element={<Home />} />
+        <Route path="/post/:id" element={<Single />} />
+        <Route path="/write" element={<Write />} />
+
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+      {
+        ((!(pathname === '/login')) && (!(pathname === '/register'))) && <Footer />
+
+      }
+    </>
   );
 }
 
 export default App;
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
+  console.log(props);
   return (
     <>
       <Navbar />
-      {children}
+      {props.children}
       <Footer />
     </>
+
   );
 };

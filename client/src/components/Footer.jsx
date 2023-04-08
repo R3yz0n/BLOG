@@ -3,7 +3,7 @@ import logo from '../images/blog.jpg'
 
 const Footer = () => {
     return (
-        <footer className='flex'>
+        <footer className='flex mt-10'>
             <img src={logo} alt="error" className='w-12' />
             <span>
                 Made with ❤️ and React. js
