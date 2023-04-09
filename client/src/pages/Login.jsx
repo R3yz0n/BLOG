@@ -9,19 +9,20 @@ const Login = () => {
 
 
 {/* changed */}
-            <form className='flex flex-col w-1/3 border-2 m-auto h-[400px] p-10 gap-4'>
-                <h1 className='text-xl mx-auto'>Login</h1>
+            <form className='flex flex-col w-[33em] border-2 m-auto h-[30em] p-10 gap-6 shadow-2xl form-card rounded-[1em]'>
+                <h1 className='text-[2.5rem] mx-auto font-mono '>LOGIN</h1>
 
-                <input type="text" placeholder='Username' className='border-b-[1px] border-black px-3 w-2/3' />
-                <input type="text" placeholder='password' className='border-b-[1px] border-black px-3 w-2/3' />
+                <input type="text" placeholder='USERNAME' className=' text-center mx-auto w-[80%] h-[3em]' />
+                <input type="text" placeholder='PASSWORD' className=' text-center mx-auto w-[80%] h-[3em]' />
 
-                <button className='w-20 border-2'>Login</button>
-                <p className='text-red-600'>This is an error!</p>
+                <button className='mx-auto w-[40%] h-[3em] border-2'>LOGIN</button>
+                <p className='text-red-600 mx-auto my-[-2px]'>This is an error!</p>
 
-                <p>Don't have an account? <Link className='underline' to='/register'> Register</Link> </p>
+                <p className='mx-auto'> Don't have an account? <Link className='underline' to='/register'> Register</Link> </p> 
+
             </form>
 
-
+{/* . */}
 
         </div>
 
