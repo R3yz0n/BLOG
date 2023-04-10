@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .b {
@@ -14,3 +15,36 @@
 .img-card {
   box-shadow: 5px 5px 3px rgb(169, 164, 164);
 }
+.form-card input {
+  background-color: rgb(229, 226, 226);
+}
+/* .form-card input:focus{
+  outline-color: rgb(32, 177, 255);
+} */
+.form-card button{
+  background-color:rgb(32, 177, 255);
+  color: rgb(19, 19, 106);
+  
+}
+
+.form-card button:hover{
+  /* height: 3.5em; */
+  width: 42%;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+/* @font-face{
+
+font-family: "CustomFont";
+src: url("..")
+
+} */
+
+.form-card{
+
+box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
+
+} 
+
+
