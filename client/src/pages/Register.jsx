@@ -8,16 +8,16 @@ const Register = () => {
 
 
 
-            <form className='flex flex-col w-1/3 border-2 m-auto h-[400px] p-10 gap-4 relative'>
-                <img src={Logo} alt="error" className='w-20 absolute top-[-5%] left-[0]' />
-                <h1 className='text-xl mx-auto'>Signup</h1>
+            <form className='sm:w-[20rem] md:w-[24rem] xl:w-[28rem] sm:h-[25rem] md:h-[26rem] xl:h-[30rem] rounded-[1em] form-card flex flex-col w-1/3 border-2 m-auto h-[400px] p-10 gap-4 relative items-center'>
+                <img src={Logo} alt="error" className='rounded-2xl w-20 absolute top-[-5%] left-[0]' />
+                <h1 className='text-[2.7rem] mx-auto'>SIGNUP</h1>
 
 
-                <input type="text" placeholder='Username' className='border-b-[1px] border-black px-3 w-2/3' />
-                <input type="email" placeholder='Email' className='border-b-[1px] border-black px-3 w-2/3' />
-                <input type="text" placeholder='Password' className='border-b-[1px] border-black px-3 w-2/3' />
+                <input type="text" placeholder='Username' className=' text-center h-[2.5rem] w-[70%]' />
+                <input type="email" placeholder='Email' className='text-center h-[2.5rem] w-[70%]' />
+                <input type="text" placeholder='Password' className='text-center h-[2.5rem]  w-[70%]' />
 
-                <button className='w-20 border-2'>Signup</button>
+                <button className='text-center  p-[0.9rem] h-[3rem] w-[38%] '>SIGNUP</button>
                 <p className='text-red-600'>This is an error!</p>
 
                 <p>Already have an account? <Link className='underline' to='/login'>Login</Link> </p>
