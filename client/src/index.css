@@ -23,16 +23,10 @@
 } */
 .form-card button{
   background-color:rgb(32, 177, 255);
-  color: rgb(19, 19, 106);
   
 }
 
-.form-card button:hover{
-  /* height: 3.5em; */
-  width: 42%;
-  font-weight: 400;
-  font-size: 1.3rem;
-}
+
 
 /* @font-face{
 
