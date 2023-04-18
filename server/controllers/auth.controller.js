@@ -6,7 +6,7 @@ const register = (req, res) => {
 
     const q = 'select * from users where email=? or username=?';
 
-    db.query(q, [req.body.email, req.body.name])
+    db.query(q, [req.body.email, req.body.name]);
 
 }
 const login = (req, res) => {
