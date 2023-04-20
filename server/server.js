@@ -17,4 +17,4 @@ server.listen(port, (req, res) => {
 //     console.log("migration successful")
 // }).catch(err => {
 //     console.log(err);
-// }) ;
+// }) 
