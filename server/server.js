@@ -1,5 +1,5 @@
 const http = require('http');
-const port = 8880;
+const port = 8800;
 const app = require('./app')
 const server = http.createServer(app);
 // const { sequelize } = require('./models');
