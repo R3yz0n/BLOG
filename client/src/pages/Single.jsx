@@ -26,7 +26,7 @@ const Single = () => {
 
                 </div>
 
-                <article className='w-2/3 w-full'>
+                <article className=' w-full'>
                     <p className=''>
                         Lorem ipsum dolor s trum in voluptates minus erasi neque non consectetur.
                     </p>

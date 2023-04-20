@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "rest api for blog",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon"
@@ -10,8 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.22"
+    "mysql2": "^3.2.3",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.31.0",
+    "sequelize-cli": "^6.6.0"
   }
 }
