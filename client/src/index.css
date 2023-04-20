@@ -20,10 +20,7 @@ html {
 .img-card {
   box-shadow: 5px 5px 3px rgb(169, 164, 164);
 }
-<<<<<<< HEAD
 
-
-=======
 
 .form-card input {
   background-color: rgb(229, 226, 226);
@@ -44,7 +41,6 @@ html {
   font-weight: 400;
   font-size: 1.3rem;
 }
->>>>>>> main
 
 /* @font-face{
 
@@ -53,16 +49,13 @@ src: url("..")
 
 } */
 
-<<<<<<< HEAD
-.form-card{
-
-box-shadow: 0 0.188em 1.550em rgba(154, 151, 151, 0.633);
-
-} 
-=======
 .form-card {
->>>>>>> main
 
+  box-shadow: 0 0.188em 1.550em rgba(154, 151, 151, 0.633);
+
+}
+
+.form-card {
   box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
 
 }
