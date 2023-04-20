@@ -8,7 +8,7 @@ const Register = () => {
 
 
 
-            <form className='sm:w-[20rem] md:w-[24rem] xl:w-[28rem] sm:h-[25rem] md:h-[26rem] xl:h-[30rem] rounded-[1em] form-card flex flex-col w-1/3 border-2 m-auto h-[400px] p-10 gap-4 relative items-center'>
+            <form className='sm:w-[20rem] md:w-[24rem] xl:w-[28rem] sm:h-[25rem] md:h-[26rem] xl:h-[30rem] rounded-[1em] form-card flex flex-col border-2 m-auto  p-10 gap-4 relative items-center'>
                 <img src={Logo} alt="error" className='rounded-2xl w-20 absolute top-[-5%] left-[0]' />
                 <h1 className='text-[2.7rem] mx-auto'>SIGNUP</h1>
 

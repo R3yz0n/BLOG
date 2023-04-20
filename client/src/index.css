@@ -21,6 +21,7 @@ html {
   box-shadow: 5px 5px 3px rgb(169, 164, 164);
 }
 
+
 .form-card input {
   background-color: rgb(229, 226, 226);
 }
@@ -50,6 +51,11 @@ src: url("..")
 
 .form-card {
 
+  box-shadow: 0 0.188em 1.550em rgba(154, 151, 151, 0.633);
+
+}
+
+.form-card {
   box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
 
 }
