@@ -1,10 +1,38 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {BsEyeFill} from 'react-icons/bs'
-import {ImUser} from 'react-icons/im'
-import {} from 'react-icons/'
-import {} from 'react-icons/'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { BsEyeFill } from 'react-icons/bs'
+import { ImUser } from 'react-icons/im'
+import axios from 'axios'
+// import { } from 'react-icons/'
+// import { } from 'react-icons/'
 const Login = () => {
+    const [formValues, setFormValues] = useState({ userName: '', password: '' });
+    const navigate = useNavigate()
+
+    const changeHandler = (e) => {
+        setFormValues({ ...formValues, [e.target.name]: e.target.value })
+        // console.log(formValues);
+
+    }
+
+    const submitHandler = async (e) => {
+        console.log(1);
+        e.preventDefault();
+        try {
+            const res = await axios.post('auth/login', formValues)
+            // console.log(res.data);
+            console.log(res);
+
+            // navigate('/')
+        }
+        catch (error) {
+            // console.log(error);
+            console.log(error.response.data.message);
+        }
+
+
+    }
+
     return (
 
         <div name='login' className='b flex flex-col w-screen h-screen'>
@@ -19,27 +47,24 @@ const Login = () => {
 
 
 
-
-
-
                     <div className='w-[50%]'>
                         <h1 className='text-[2.1rem] mx-auto font-[900] font-sans'>Log In</h1>
-                      
-                      
+
+
                         <div className='flex flex-col space-y-[2rem] h-[8rem]'>
-                           
-                           
-                           
-                        <ImUser/>   <input type="text" placeholder='Your Name' className=' border-b-2 border-[#908c8ca0]  w-[100%] h-[2rem] mt-[2rem]' />
-                           
-                            <input type="text" placeholder='Password' className=' border-b-2 border-[#908c8ca0] w-[100%] h-[2rem' />
-                     
-                     
+
+
+
+                            <ImUser />   <input type="text" placeholder='Your Name' className=' border-b-2 border-[#908c8ca0]  w-[100%] h-[2rem] mt-[2rem]' name='userName' value={formValues.userName} onChange={changeHandler} />
+
+                            <input type="text" placeholder='Password' className=' border-b-2 border-[#908c8ca0] w-[100%] h-[2rem' name='password' value={formValues.password} onChange={changeHandler} />
+
+
                         </div>
 
                         <p className='my-[1.4rem]'> <input type="checkbox" /> Remember me </p>
 
-                        <button className='mx-auto w-[7.5rem] mt-[0.5rem] rounded-[0.5rem] text-white h-[3.4rem] border-2 bg-[#70abe6]'>Log in</button>
+                        <button className='mx-auto w-[7.5rem] mt-[0.5rem] rounded-[0.5rem] text-white h-[3.4rem] border-2 bg-[#70abe6]' onClick={submitHandler}>Log in</button>
                     </div>
 
                 </section>

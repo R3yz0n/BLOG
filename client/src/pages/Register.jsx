@@ -1,8 +1,42 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../images/loginLogo.png'
+import axios from 'axios'
 
 const Register = () => {
+    const [formValues, setFormValues] = useState({ userName: '', email: '', password: '' });
+    const [error, setError] = useState('')
+    const [sucess, setSucess] = useState(false)
+    const navigate = useNavigate()
+
+    const changeHandler = (e) => {
+        setFormValues({ ...formValues, [e.target.name]: e.target.value })
+        // console.log(formValues);
+
+
+    }
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('auth/register', formValues)
+            // console.log(data);
+            console.log(res);
+            setSucess(true)
+            setTimeout(() => {
+                navigate('/login')
+
+            }, 1000);
+        }
+        catch (error) {
+            console.log(error);
+            console.log(error.response.data.message);
+            setError(error.response.data.message);
+        }
+
+
+
+    }
     return (
         <div name='register' className='b flex flex-col w-screen h-screen'>
 
@@ -13,13 +47,13 @@ const Register = () => {
                 <h1 className='text-[2.7rem] mx-auto'>SIGNUP</h1>
 
 
-                <input type="text" placeholder='Username' className=' text-center h-[2.5rem] w-[70%]' />
-                <input type="email" placeholder='Email' className='text-center h-[2.5rem] w-[70%]' />
-                <input type="text" placeholder='Password' className='text-center h-[2.5rem]  w-[70%]' />
+                <input type="text" placeholder='Username' className=' text-center h-[2.5rem] w-[70%]' onChange={changeHandler} value={formValues.userName} name='userName' />
+                <input type="email" placeholder='Email' className='text-center h-[2.5rem] w-[70%]' onChange={changeHandler} value={formValues.email} name='email' />
+                <input type="text" placeholder='Password' className='text-center h-[2.5rem]  w-[70%]' onChange={changeHandler} value={formValues.password} name='password' />
 
-                <button className='text-center  p-[0.9rem] h-[3rem] w-[38%] '>SIGNUP</button>
-                <p className='text-red-600'>This is an error!</p>
-
+                <button className='text-center  p-[0.9rem] h-[3rem] w-[38%] ' onClick={submitHandler}>SIGNUP</button>
+                {error.length && <p className='text-red-600'>{error}</p>}
+                {sucess && <p className='text-red-600'>User sucessully created !</p>}
                 <p>Already have an account? <Link className='underline' to='/login'>Login</Link> </p>
             </form>
 
