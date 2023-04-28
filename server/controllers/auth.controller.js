@@ -3,13 +3,23 @@ const models = require('../models')
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const joi = require('joi')
 
 const register = async (req, res) => {
 
+    // Define validation rules
+    //server side validation is required to sanitize data for malicious code we mustnt insert directly into DB
 
-    // return res.json({
-    //     mesage: 'good'
-    // })
+    // const schema = joi.object({
+    //     userName: joi.string().alphanum().min(3).max(30).required(),
+    //     email: joi.string().email().required(),
+    //     password: joi.string().min(6).required(),
+    // });
+    // const { error } = schema.validate(req.body);
+    // if (error) {
+    //     return res.status(400).json({ message: error.details });
+    // }
+
     try {
 
         //check existing user
@@ -25,7 +35,7 @@ const register = async (req, res) => {
         if (user) {
             // console.log('user exists');
             // status code for useralready exits
-            return res.status(408).json({
+            return res.status(409).json({
                 message: "User already exists !"
             });
         }
@@ -101,7 +111,7 @@ const login = async (req, res) => {
         console.log(other);
 
         //gpt days for every subsequent reuest made to server by client it is automatically sent in header
-        res.cookie("access_token", token, { httpOnly: true }).status(200).json(other);
+        res.cookie("access_token", token, { httpOnly: true }).status(200).json({ message: "Login sucessfull !" });
         // res.status(200).json({ message: "Login sucessfull !", token: token })
 
 
