@@ -4,6 +4,29 @@ const addPost = (req, res) => {
 
 }
 
+const getPost = () => {
+
+
+}
+const getPosts = () => {
+
+
+}
+
+const deletePost = () => {
+
+
+}
+
+const updatePost = () => {
+
+
+}
+
 module.exports = {
     addPost: addPost,
+    getPost: getPost,
+    getPosts: getPosts,
+    updatePost: updatePost,
+    deletePost: deletePost
 }

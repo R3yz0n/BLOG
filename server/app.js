@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-// const postRoutes = require('./routes/posts')
+const postRoutes = require('./routes/posts')
 // const userRoutes = require('./routes/users')
 const authRoutes = require('./routes/auth')
 
@@ -14,12 +14,11 @@ app.use(bodyParser.json())
 
 
 app.use(cookieParser()) //yo paxi bujinxa hola xd
-console.log('----s');
 
 
 
 
-// app.use('/api/posts', postRoutes);
+app.use('/api/posts', postRoutes);
 // app.use('/api/auth', (postRoutes));
 app.use('/auth', authRoutes);
 
