@@ -106,12 +106,12 @@ const login = async (req, res) => {
         // if usrnm and pw correct then send jwt toktne
         const token = jwt.sign({ email: user.userName, id: user.id }, "secret");
 
-        const { password, ...other } = user;
-        console.log(password);
-        console.log(other);
+        // console.log(password);
+        console.log(user.dataValues);
+        const { id, email, userName } = user;
 
         //gpt days for every subsequent reuest made to server by client it is automatically sent in header
-        res.cookie("access_token", token, { httpOnly: true }).status(200).json({ message: "Login sucessfull !" });
+        res.cookie("access_token", token, { httpOnly: true }).status(200).json({ id, email, userName });
         // res.status(200).json({ message: "Login sucessfull !", token: token })
 
 
@@ -132,6 +132,8 @@ const login = async (req, res) => {
 
 }
 const logout = (req, res) => {
+    console.log('222222222222222222');
+    res.clearCookie("access_token").status(200).json("User logged out !")
 
 
 }

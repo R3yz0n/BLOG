@@ -107,7 +107,7 @@ const Register = () => {
                 <button type='submit' className='border-2 px-12 py-1 bg-[rgb(28,69,175)] text-white rounded-sm border-[rgb(28,69,175)] hover:bg-blue-600 '>Sign up </button>
 
 
-                {response.length && <p className='text-red-600'>{response}</p>}
+                {response.length !== 0 && <p className='text-red-600'>{response}</p>}
 
                 <p>Already have an account? <Link className='underline' to='/login'>Login</Link> </p>
             </form>
