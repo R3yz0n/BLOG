@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BsEyeFill } from 'react-icons/bs'
@@ -56,11 +57,26 @@ const Login = () => {
         <div name='login' className='b flex flex-col w-screen h-screen'>
 
 
+
             <form className='flex flex-col sm:w-[30rem] md:w-[50rem]  border-2 m-auto sm:min-h-[25rem]  p-10 gap-6 shadow-2xl  rounded-[1em]' onSubmit={handleSubmit}>
 
                 <section className='flex md:w-[95%] gap-[5rem] m-auto'>
-                    <div className='w-[50%]'>
+                    <div className='  w-[50%]'>
                         <img src="http://inmas-rangpur.org/Content/img/signin-image.jpg" alt="error404" />
+
+
+                        <p className='mx-auto flex text-end h-[4rem]'>
+
+
+
+                            <span className='flex flex-col justify-end'> Don't have an account? </span>
+
+                            <Link className='underline flex flex-col justify-end ' to='/register'> Register</Link>
+
+
+
+                        </p>
+
                     </div>
 
 
@@ -70,6 +86,7 @@ const Login = () => {
 
 
                         <div className='flex flex-col space-y-[2rem] h-[8rem] '>
+
 
 
 
@@ -92,6 +109,7 @@ const Login = () => {
                         </div>
 
 
+
                     </div>
 
                 </section>
@@ -100,7 +118,7 @@ const Login = () => {
 
 
 
-                <p className='mx-auto'> Don't have an account? <Link className='underline' to='/register'> Register</Link> </p>
+
 
             </form>
 
