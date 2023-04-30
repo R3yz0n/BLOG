@@ -10,7 +10,7 @@
 }
 
 html {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .b {
@@ -22,25 +22,14 @@ html {
 }
 
 
-.form-card input {
+/* .form-card input {
   background-color: rgb(229, 226, 226);
-}
-
-/* .form-card input:focus{
-  outline-color: rgb(32, 177, 255);
 } */
-.form-card button {
-  background-color: rgb(32, 177, 255);
-  color: rgb(19, 19, 106);
 
-}
 
-.form-card button:hover {
-  /* height: 3.5em; */
-  width: 42%;
-  font-weight: 400;
-  font-size: 1.3rem;
-}
+
+
+
 
 /* @font-face{
 

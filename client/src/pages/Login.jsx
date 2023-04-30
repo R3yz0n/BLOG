@@ -1,15 +1,64 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { FaUserAlt } from 'react-icons/fa'
-import { AiFillLock } from 'react-icons/ai'
+
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { BsEyeFill } from 'react-icons/bs'
+import { ImUser } from 'react-icons/im'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import { loginSchmea } from '../schema'
+import { UserContext } from '../store/AuthContext'
+
+const initialValues = { userName: '', password: '' };
+
 const Login = () => {
+    const { currUser, login } = UserContext()
+    const navigate = useNavigate();
+    const [response, setResponse] = useState('')
+
+    const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
+        initialValues: initialValues, validationSchema: loginSchmea,
+        onSubmit: async (values, action) => {
+            setResponse('')
+            // console.log(values);
+            try {
+                const res = await axios.post('auth/login', values)
+                // console.log(data);
+                console.log(res);
+                // setResponse(res.data.message)
+                console.log(res);
+                login(res.data);
+
+                setTimeout(() => {
+                    navigate('/')
+
+                }, 4000);
+            }
+            catch (error) {
+                // console.log(error.message);
+                console.log(error);
+                setResponse(error.response.data.message || error.message)
+                // console.log(error.response.data.message);
+                console.log(error.response.data.message || error.message);
+                // setError(error.response.data.message);
+            }
+
+
+        }
+
+    });
+    console.log(currUser);
+    // console.log(login);
+    // console.log(values);
+
+
+
     return (
 
         <div name='login' className='b flex flex-col w-screen h-screen'>
 
 
-            <form className='flex flex-col sm:w-[30rem] md:w-[50rem]  border-2 m-auto sm:h-[35rem]  p-10 gap-6 shadow-2xl form-card rounded-[1em]'>
+
+            <form className='flex flex-col sm:w-[30rem] md:w-[50rem]  border-2 m-auto sm:min-h-[25rem]  p-10 gap-6 shadow-2xl  rounded-[1em]' onSubmit={handleSubmit}>
 
                 <section className='flex md:w-[95%] gap-[5rem] m-auto'>
                     <div className='  w-[50%]'>
@@ -32,52 +81,39 @@ const Login = () => {
 
 
 
-
-
-
                     <div className='w-[50%]'>
                         <h1 className='text-[2.1rem] mx-auto font-[900] font-sans'>Log In</h1>
 
 
-                        <div className='flex flex-col space-y-[2rem] h-[8rem]'>
+                        <div className='flex flex-col space-y-[2rem] h-[8rem] '>
 
 
 
-                            <p className='  mt-[2rem] flex border-b-2 border-[#908c8ca0] '>
 
+                            <aside>
+                                <input type="text" placeholder='Your Name' className=' border-b-2 border-[#908c8ca0]  w-[100%] h-[2rem] mt-[2rem] outline-none' name='userName'
+                                    value={values.userName} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.userName && touched.userName ? <p className='text-red-600'>{errors.userName}</p> : null}
+                            </aside>
 
-                                <FaUserAlt />
+                            <aside>
+                                <input type="text" placeholder='Password' className=' border-b-2 border-[#908c8ca0] w-[100%] h-[2rem outline-none' name='password' value={values.password}
+                                    onChange={handleChange} onBlur={handleBlur} />
+                                {errors.password && touched.password ? <p className='text-red-600'>{errors.password}</p> : null}
+                            </aside>
 
-                                <input type="text" placeholder='Your Name' className='  h-
-                                [2rem] ml-[1.3rem]' />
+                            <p className='my-[1.4rem]'> <input type="checkbox" /> Remember me </p>
+                            {response.length !== 0 && <p className='text-red-600 mx-auto my-[-2px]'>{response}</p>}
 
-                            </p>
-
-
-
-                            <p className='flex border-b-2 border-[#908c8ca0]'>
-
-
-                                <AiFillLock size='1.3rem' />
-
-                                <input type="text" placeholder='Password' className=' ml-[1.3rem] h-[2rem' /> <BsEyeFill/>
-
-
-                            </p>
-
+                            <button className='mx-auto w-full py-2 mt-[0.5rem] rounded-[0.5rem] text-white h-[3.4rem] border-2 bg-[#70abe6]' type='submit'>Log in</button>
                         </div>
 
-                        <p className='my-[1.4rem]'> <input type="checkbox" /> Remember me </p>
-
-                        <button className='mx-auto w-[7.5rem] mt-[0.5rem] rounded-[0.5rem] text-white h-[3.4rem] border-2 bg-[#70abe6]'>Log in</button>
-
-
-                        <p className='text-red-600 my-[5rem]'>This is an error!</p>
 
 
                     </div>
 
                 </section>
+
 
 
 

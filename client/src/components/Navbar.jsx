@@ -1,8 +1,10 @@
 import React from 'react'
 import Logo from '../images/blog.jpg'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../store/AuthContext'
 
 const Navbar = () => {
+    const { currUser, logout } = UserContext();
     return (
         <section name='navbar' className='flex justify-around mt-5 w-screen' >
 
@@ -18,8 +20,11 @@ const Navbar = () => {
                 <Link to='/?cat=design'>DESIGN</Link>
                 <Link to='/?cat=food'>FOOD</Link>
 
-                <span>Reyzon</span>
-                <span>Logout</span>
+                {currUser && <span>{currUser.userName}</span>}
+                {
+                    currUser ? <button onClick={logout}>Logout</button> : <Link to='/login'>Login</Link>
+                }
+
                 <span>
                     <Link to='write'>Write</Link>
                 </span>
