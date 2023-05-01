@@ -1,38 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const Home = () => {
-    const posts = [
-        {
-            id: 1,
-            title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 
-        },
-        {
-            id: 1,
-            title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    const [posts, setPosts] = useState([])
+    const category = useLocation().search
+    console.log(category);
 
-        },
-        {
-            id: 1,
-            title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    useEffect(() => {
 
-        },
-        {
-            id: 1,
-            title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
-            img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 
-        },
+        const fetchData = async () => {
+            console.log('ra');
+            try {
+                const res = await axios.get(`/posts${category}`)
+                setPosts(res.data)
+                console.log(res.data);
+            }
+            catch (err) {
+                console.log(err);
+            }
 
-    ]
+        }
+        fetchData()
+
+    }, [category])
     return (
         <section className='' name='home'>
 
@@ -41,7 +34,7 @@ const Home = () => {
                     posts.map((post, i) =>
                         <div key={post.id} className={`flex w-3/4 mx-auto gap-10 my-10  ${i % 2 === 0 && 'flex-row-reverse'}`} >
                             {/* <div> */}
-                            <img src={post.img} alt="error" className='w-96 img-card rounded-sm b' />
+                            <img src={post.image} alt="error" className='w-96 img-card rounded-sm b' />
                             {/* </div> */}
                             <div>
                                 <Link to={`/post/${post.id}`}>
