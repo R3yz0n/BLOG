@@ -18,7 +18,7 @@ app.use(cookieParser()) //yo paxi bujinxa hola xd
 
 
 
-app.use('/api/posts', postRoutes);
+app.use('/posts', postRoutes);
 // app.use('/api/auth', (postRoutes));
 app.use('/auth', authRoutes);
 

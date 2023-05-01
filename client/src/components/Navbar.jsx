@@ -13,12 +13,12 @@ const Navbar = () => {
             </div>
             <div name='links' className='flex gap-3 text-sm items-center'>
 
-                <Link to='/?cat=art'>ART</Link>
-                <Link to='/?science'>SCIENCE</Link>
-                <Link to='/?cat=technology'>TECHNOLOGY</Link>
-                <Link to='/?cat=cinema'>CINEMA</Link>
-                <Link to='/?cat=design'>DESIGN</Link>
-                <Link to='/?cat=food'>FOOD</Link>
+                <Link to='/?category=art'>ART</Link>
+                <Link to='/?category=science'>SCIENCE</Link>
+                <Link to='/?category=technology'>TECHNOLOGY</Link>
+                <Link to='/?category=cinema'>CINEMA</Link>
+                <Link to='/?category=design'>DESIGN</Link>
+                <Link to='/?category=food'>FOOD</Link>
 
                 {currUser && <span>{currUser.userName}</span>}
                 {
