@@ -32,7 +32,7 @@ const Menu = () => {
         },
 
     ]
-    console.log(posts);
+    // console.log(posts);
     return (
         <section name='menu' className='border-2 w-1/3 p-6' >
             <h1>Other posts you may like</h1>

@@ -1,16 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdEditNote } from 'react-icons/md'
 import { AiFillDelete } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Menu from '../components/Menu'
+import axios from 'axios'
 
 const Single = () => {
+    const [post, setPost] = useState({})
+    const location = useLocation()
+    console.log(location);
+    const postId = location.pathname.split('/')[2]
+    console.log(postId);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+
+            try {
+                const res = await axios.get(`/posts${postId}`)
+                console.log(res);
+
+            }
+            catch (error) {
+                console.log(error);
+
+            }
+
+
+        }
+        fetchData()
+    }, [])
+
     return (
         <section className="  w-[80vw] mx-auto min-h-screen border-2 flex" name='single'>
 
 
             <div className="w-2/3 flex flex-col gap-5">
-                <img className="object-cover w-full max-h-64" alt="hero" src="https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn%20%20%20wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
+                <img className="object-cover w-full max-h-64" alt="hero" src={post.img} />
 
                 <div className='flex gap-3 w-full'>
                     <img src="https://dummyimage.com/720x600" alt="profile" className='w-10 rounded-full' />

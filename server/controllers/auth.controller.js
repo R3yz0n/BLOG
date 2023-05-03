@@ -4,6 +4,14 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const joi = require('joi')
+const { check, validationResult } = require('express-validator');
+
+
+
+const a = [
+    check('userName').notEmpty().withMessage("Username is required").matches('^[A-Za-z]+$').withMessage('Please enter valid username')
+
+]
 
 const register = async (req, res) => {
 
@@ -19,6 +27,11 @@ const register = async (req, res) => {
     // if (error) {
     //     return res.status(400).json({ message: error.details });
     // }
+
+    const error = validationResult(req.body)
+    if (!error.isEmpty()) {
+        return res.status(401).json(error)
+    }
 
     try {
 

@@ -21,7 +21,7 @@ const AuthContext = ({ children }) => {
     const logout = async () => {
         console.log('------');
         const res = await axios.post('auth/logout');
-        console.log(res);
+        // console.log(res);
         setCurrUser(null);
 
 
@@ -31,7 +31,7 @@ const AuthContext = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(currUser))
-        console.log(currUser);
+        // console.log(currUser);
     }, [currUser])
 
     // console.log(currUser);
