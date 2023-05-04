@@ -10,21 +10,21 @@ const Menu = () => {
 
         },
         {
-            id: 1,
+            id: 2,
             title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
             desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
             img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 
         },
         {
-            id: 1,
+            id: 3,
             title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
             desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
             img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 
         },
         {
-            id: 1,
+            id: 4,
             title: 'Lorem ipusum sit ames slaasdfj slsafjasm consector',
             desc: 'Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector Lorem ipusum sit ames slaasdfj slsafjasm consector',
             img: 'https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn   wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'

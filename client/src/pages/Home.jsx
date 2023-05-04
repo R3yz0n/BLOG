@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
+import Cookies from 'js-cookie';
+
 
 const Home = () => {
 
     const [posts, setPosts] = useState([])
-    const category = useLocation().search
-    console.log(category);
+    const category = useLocation().search;
+    // const myCookie = Cookies.get("access_token")
+    Cookies.set('myCookie', 'cookieValue', { expires: 7 });
+    const cookieValue = Cookies.get('access_token');
+    console.log(cookieValue); // logs "cookieValue"
+
+
+
 
     useEffect(() => {
 
 
         const fetchData = async () => {
-            console.log('ra');
             try {
                 const res = await axios.get(`/posts${category}`)
                 setPosts(res.data)
-                console.log(res.data);
+                // console.log(res.data);
             }
             catch (err) {
                 console.log(err);

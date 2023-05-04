@@ -124,7 +124,7 @@ const login = async (req, res) => {
         const { id, email, userName } = user;
 
         //gpt days for every subsequent reuest made to server by client it is automatically sent in header
-        res.cookie("access_token", token, { httpOnly: true }).status(200).json({ id, email, userName });
+        res.cookie("access_token", token, { maxAge: 300000, httpOnly: true }).status(200).json({ id, email, userName });
         // res.status(200).json({ message: "Login sucessfull !", token: token })
 
 
