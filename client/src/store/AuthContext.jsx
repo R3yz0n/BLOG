@@ -11,7 +11,7 @@ const AuthContext = ({ children }) => {
     const user = JSON.parse(localStorage.getItem('user'));
     const [currUser, setCurrUser] = useState(user || null);
     const login = (inputs) => {
-
+        console.log(inputs);
         setCurrUser(inputs)
         // console.log(currUser);
 
@@ -20,7 +20,7 @@ const AuthContext = ({ children }) => {
 
     const logout = async () => {
         console.log('------');
-        const res = await axios.post('auth/logout');
+        const res = await axios.post('/auth/logout');
         console.log(res);
         setCurrUser(null);
 
@@ -31,7 +31,7 @@ const AuthContext = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(currUser))
-        console.log(currUser);
+        // console.log(currUser);
     }, [currUser])
 
     // console.log(currUser);

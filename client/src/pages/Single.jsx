@@ -1,54 +1,110 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdEditNote } from 'react-icons/md'
 import { AiFillDelete } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Menu from '../components/Menu'
+import axios from 'axios'
+import NotFound from './NotFound'
+import moment from 'moment'
+import { UserContext } from '../store/AuthContext'
 
 const Single = () => {
+    const [post, setPost] = useState({})
+    const [userData, setUserData] = useState({})
+    const location = useLocation()
+    const { currUser } = UserContext()
+    const postId = location.pathname.split('/')[2]
+    const navigate = useNavigate()
+
+    console.log(moment(post.date).fromNow());
+
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+
+            try {
+                const { data } = await axios.get(`/posts/${postId}`)
+                const { user, ...others } = data;
+                setUserData(user);
+                setPost(others)
+
+
+            }
+            catch (error) {
+                console.log(error);
+
+            }
+
+
+        }
+        fetchData();
+    }, [postId])
+
+
+    const handleDelete = async () => {
+
+        console.log('deleted');
+        try {
+            console.log('here');
+            const res = await axios.delete(`/posts/${postId}`)
+            console.log(res);
+
+        }
+        catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
     return (
         <section className="  w-[80vw] mx-auto min-h-screen border-2 flex" name='single'>
 
+            {
+                post.title ? <div className="w-2/3 flex flex-col gap-5">
+                    <img className="object-cover w-full max-h-64" alt="hero" src={post.image} />
 
-            <div className="w-2/3 flex flex-col gap-5">
-                <img className="object-cover w-full max-h-64" alt="hero" src="https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn%20%20%20wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
+                    <div className='flex gap-3 w-full'>
+                        <img src={userData.image} alt="profile" className='w-10 rounded-full' />
 
-                <div className='flex gap-3 w-full'>
-                    <img src="https://dummyimage.com/720x600" alt="profile" className='w-10 rounded-full' />
+                        <aside>
+                            <p>{userData.userName}</p>
+                            <p>{moment(post.date).fromNow()}</p>
+                        </aside>
 
-                    <aside>
-                        <p>John</p>
-                        <p>Posted 2days ago</p>
-                    </aside>
+                        {
+                            currUser?.userName === userData.userName &&
+                            <>
+                                <Link to={`/write?edit=2`}>  <MdEditNote size={30} color='green' className='cursor-pointer' /></Link>
 
-                    <Link to={`/write?edit=2`}>  <MdEditNote size={30} color='green' /></Link>
+                                <AiFillDelete size={25} color='red' onClick={handleDelete} className='cursor-pointer' />
+                            </>
+                        }
 
-                    <AiFillDelete size={25} color='red' />
+                    </div>
 
-                </div>
+                    <article className=' w-full'>
+                        <p className=''>{post.title} </p>
 
-                <article className=' w-full'>
-                    <p className=''>
-                        Lorem ipsum dolor s trum in voluptates minus erasi neque non consectetur.
-                    </p>
+                        <p className='leading-8 text-xs w-full'>
+                            {post.description}
 
-                    <p className='leading-8 text-xs w-full'>
-                        Lorem, ipsum dolor it amet consectetur adipisicing elit. Commodi suscipit possimus sint id, excepturi
-                        esse expedita, saepe quae consequuntur, cupiditate recusandae. Laudantium eveniet molestiae facere, ullam optio mollitia tempora aut.
-                        Debitis corporis aliquid laboriosam voluptatibus mollitia repellendus quidem culpa veniam consequuntur,
-                        aut numquam beatae ullam necessitatibus perspiciatis nulla modi, tenetur, quia dolorem impedit nisi! Harum minus magni dolorum numquam nemo?
-                        Nobis quasi voluptatum uis nulla minus quia deleniti, facilis illo cupiditate consectetur consequatur
-                        reiciendis natus porro officia eveniet optio magnam non est dolorum beatae soluta! Sapiente sunt fuga molestiae placeat.
+                        </p>
 
-                    </p>
+                    </article>
+                </div> :
+                    <NotFound />
+            }
 
-                </article>
-            </div>
+
+
 
             <Menu />
 
 
 
-        </section>
+        </section >
     )
 }
 

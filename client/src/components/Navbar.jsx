@@ -9,7 +9,7 @@ const Navbar = () => {
         <section name='navbar' className='flex justify-around mt-5 w-screen' >
 
             <div name='logo'>
-                <img src={Logo} alt="error" className='w-20' />
+                <Link to='/'> <img src={Logo} alt="error" className='w-20' /></Link>
             </div>
             <div name='links' className='flex gap-3 text-sm items-center'>
 
