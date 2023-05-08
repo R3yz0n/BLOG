@@ -62,28 +62,39 @@ const addPost = (req, res) => {
 
 }
 
-const deletePost = (req, res) => {
-    const token = req.cookies.access_token
-    if (!token)
-        return res.status(401).json({ message: "Not authenticated." })
-    console.log(token);
+const deletePost = async (req, res) => {
 
-    const decoded = jwt.verify(token, process.env.API_KEY, (err, user) => {
-        console.log(err);
-        if (err)
-            return res.status(403).json({
-                message: "Invalid token."
-            })
-        const postId = req.params.id
-        // console.log(postId);
+    // const token = req.cookies.access_token
+    // if (!token)
+    //     return res.status(401).json({ message: "Not authenticated." })
+    // console.log(token);
 
-        // const post = posts.destroy({
-        //     // where: {id:}
-        // })
+    // const decoded = jwt.verify(token, 'secret', (err, user) => {
+    //     console.log(err);
+    //     if (err)
+    //         return res.status(403).json({
+    //             message: "Invalid token."
+    //         })
+    //     const postId = req.params.id
+    //     console.log(user);
 
 
-    })
-    console.log(decoded);
+
+    // })
+    // console.log(decoded);
+    try {
+        const postToDelete = await posts.destroy({
+            where: { id: req.params.id }
+        })
+        console.log(postToDelete);
+        if (postToDelete)
+            res.status(200).json({ message: "Post has been deleted." })
+        console.log(postToDelete);
+    }
+    catch (error) {
+        console.log(error);
+
+    }
 
 
 

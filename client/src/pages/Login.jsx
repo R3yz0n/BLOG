@@ -25,13 +25,12 @@ const Login = () => {
                 // console.log(data);
                 console.log(res);
                 // setResponse(res.data.message)
-                console.log(res);
                 login(res.data);
 
                 setTimeout(() => {
                     navigate('/')
 
-                }, 4000);
+                }, 400);
             }
             catch (error) {
                 // console.log(error.message);
@@ -46,7 +45,7 @@ const Login = () => {
         }
 
     });
-    console.log(currUser);
+    // console.log(currUser);
     // console.log(login);
     // console.log(values);
 
