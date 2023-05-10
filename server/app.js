@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 
 const postRoutes = require('./routes/posts')
 const authRoutes = require('./routes/auth')
+const imageRoutes = require('./routes/images')
 
 const app = express();
 const cors = require('cors')
@@ -19,6 +20,7 @@ app.use(cookieParser()) //yo paxi bujinxa hola xd
 
 app.use('/posts', postRoutes);
 app.use('/auth', authRoutes);
+app.use('/images', imageRoutes)
 
 
 

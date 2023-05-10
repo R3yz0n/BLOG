@@ -40,3 +40,39 @@ export const loginSchmea = Yup.object({
 
 
 })
+
+export const writePostSchema = () => Yup.object({
+
+    // description: Yup.string()
+    //     .min(4, 'Description must be at least 4 characters long.')
+    //     .max(15, 'Description cannot be longer than 15 characters.')
+    //     .required('Description is required.'),
+
+
+    title: Yup.string()
+        .matches(/^[a-zA-Z]+ /, 'Title can only contain alphabetical characters.')
+        .min(4, 'Title must be at least 4 characters long.')
+        .max(15, 'Title cannot be longer than 15 characters.')
+        .required('Title is required.'),
+
+    description: Yup.string()
+        .required('Content is required')
+        .test('wordCount', 'Content must be at least 50 words', (value) => {
+            const wordCount = countWords(value);
+            return wordCount >= 50;
+        }),
+
+    category: Yup.string()
+        .required('Category  is required.'),
+
+
+
+
+})
+
+function countWords(str) {
+    return str.trim().split(/\s+/).length;
+}
+
+
+

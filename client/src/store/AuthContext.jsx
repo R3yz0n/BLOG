@@ -14,7 +14,7 @@ const AuthContext = ({ children }) => {
     const storedToken = JSON.parse(localStorage.getItem('token'));
     const location = useLocation()
 
-    const [currUser, setCurrUser] = useState({});
+    const [currUser, setCurrUser] = useState(null);
     const [token, setToken] = useState(storedToken || null);
     // console.log(token);
     // console.log(currUser);
@@ -23,7 +23,7 @@ const AuthContext = ({ children }) => {
     const login = async (inputs) => {
 
         setToken(inputs.token)
-        console.log(inputs.token);
+        // console.log(inputs.token);
 
         // if i set currUser with decodedtoken when i reload the page my currUser state becomes empty obj again
 
@@ -74,7 +74,7 @@ const AuthContext = ({ children }) => {
         const isTokenExpired = () => {
             if (token) {
                 const decoded = jwt_decode(token);
-                console.log(decoded.exp);
+                // console.log(decoded.exp);
                 return decoded.exp < Date.now() / 1000;
             }
             return false;
