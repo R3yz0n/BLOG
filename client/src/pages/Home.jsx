@@ -16,7 +16,9 @@ const Home = () => {
 
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/posts${category}`, { headers: { Authorization: token } })
+                const res = await axios.get(`/posts${category}`,
+                    //  { headers: { Authorization: token } }
+                )
                 setPosts(res.data)
                 // console.log(res.data);
             }

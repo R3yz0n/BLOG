@@ -12,6 +12,7 @@ const checkAuthentication = async (req, res, next) => {
 
 
     try {
+        // const decodedUser = jwt.verify(req.headers.authorization, 'secret')
         const decodedUser = jwt.verify(req.headers.authorization.split(" ")[1], 'secret')
         // console.log(decodedUser);
         console.log('next auth');
@@ -25,7 +26,6 @@ const checkAuthentication = async (req, res, next) => {
         return res.status(401).json({
             message: "Unauthorized user."
         })
-        // return res.send('hello')
 
     }
 

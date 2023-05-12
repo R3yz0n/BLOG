@@ -36,7 +36,7 @@ const AuthContext = ({ children }) => {
         setCurrUser(null);
         setToken(null)
         // navigate('/login')
-        navigate('/')
+        navigate('/login')
 
 
 
@@ -71,6 +71,7 @@ const AuthContext = ({ children }) => {
 
     useEffect(() => {
         // Check if the token is expired
+        console.log('check if expired');
         const isTokenExpired = () => {
             if (token) {
                 const decoded = jwt_decode(token);

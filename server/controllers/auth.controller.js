@@ -116,7 +116,7 @@ const login = async (req, res) => {
             return res.status(400).json({ message: "Wrong username or password !" })
 
         // if usrnm and pw correct then send jwt toktne
-        const token = jwt.sign({ email: user.email, id: user.id, userName: user.userName, image: user.image }, "secret", { expiresIn: '10m' });
+        const token = jwt.sign({ email: user.email, id: user.id, userName: user.userName, image: user.image }, "secret", { expiresIn: '10h' });
 
 
         console.log(user.dataValues);
