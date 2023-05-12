@@ -1,7 +1,14 @@
-const uploadFile = (req, res) => {
+const uploadFile = (req, res, err) => {
 
-    console.log('image controller');
+    // console.log(req.file.filename);
+    if (err) {
+        console.log(err.message);
+        return res.status(400).json({
+            message: 'Error: ' + err.message
+        });
+    }
     if (req.file.filename) {
+        console.log('herexd');
         res.status(401).json({
             message: "Image upload sucessfully",
             url: req.file.filename

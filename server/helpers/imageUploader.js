@@ -4,9 +4,8 @@ const path = require('path')
 const storage = multer.diskStorage(
     {
         destination: (req, file, cb) => {
-            console.log('here');
-
-            cb(null, '../uploads');
+            console.log('storage');
+            cb(null, '././uploads');
 
         },
         filename: (req, file, cb) => {
@@ -18,16 +17,18 @@ const storage = multer.diskStorage(
 );
 
 const fileFilter = (req, file, cb) => {
-    console.log('here');
+    // console.log(file);
+    // console.log(file);
 
-    // if (file.mimetype === 'images/jpeg' || file.mimetype === 'image/png') {
+    if (file.mimetype === 'images/jpeg' || file.mimetype === 'image/png') {
 
-    //     cb(null, true);
-    // }
-    // else {
-    //     cb(new Error('Unsupported Format'), false)
+        cb(null, true);
+    }
+    else {
 
-    // }
+        cb(new Error('Unsupported Format'), false)
+
+    }
 
 
 
