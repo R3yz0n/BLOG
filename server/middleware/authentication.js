@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const checkAuthentication = async (req, res, next) => {
     // console.log(req.headers.authorization.split(" ")[1]);
+    // console.log(req.headers);
     if (!req.headers.authorization)
         return res.status(403).json({ message: "Unauthorized user." })
 
@@ -16,7 +17,7 @@ const checkAuthentication = async (req, res, next) => {
         const decodedUser = jwt.verify(req.headers.authorization.split(" ")[1], 'secret')
         // console.log(decodedUser);
         console.log('next auth');
-        next();
+        next()
 
 
     }

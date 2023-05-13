@@ -56,8 +56,40 @@ const getPost = async (req, res) => {
     // })
 
 }
-const addPost = (req, res) => {
-    res.json("form controller");
+const addPost = (req, res, user) => {
+    // console.log(req.body);
+    console.log(user.id);
+    const postToCreate = {
+        title: req.body.title,
+        image: req.body.image,
+        description: req.body.description,
+        category: req.body.category,
+        uid: req.body.uid,
+    }
+    console.log(1);
+    // console.log(user);
+    console.log(postToCreate);
+
+    posts.create(postToCreate).then(result => {
+        res.status(201).json(
+            {
+                message: 'Post created sucessfully',
+                post: result
+            }
+        );
+        console.log(result);
+        // console.log('sucessfull');
+
+
+
+    }).catch(error => {
+        console.log(error);
+        res.status(500).json({
+            message: 'SOmething went wrong',
+            error: error
+        })
+    })
+
 
 
 }

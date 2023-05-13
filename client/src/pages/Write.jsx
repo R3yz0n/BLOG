@@ -5,39 +5,55 @@ import Button from '../components/Button'
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { writePostSchema } from '../schema';
+import { UserContext } from '../store/AuthContext';
 
 
 const initialValues = { title: '', description: '', image: '', category: '' };
 
 const Write = () => {
+    const { token, currUser } = UserContext()
     const [file, setFile] = useState(null);
     // console.log(file);
 
     const fileHandler = (e) => {
         setFile(e.target.files[0])
+        console.log(file);
 
 
 
     }
+
+
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues, validationSchema: writePostSchema,
 
         onSubmit: async (values, action) => {
             // setResponse('')
             console.log(1);
-            // console.log(action);
-            console.log(values);
-            console.log(file);
-            try {
+            const formData = new FormData();
 
-                // const res = await axios.post('auth/register', others)
-                // console.log(data);
-                // console.log(res);
+            formData.append('file', file);
+            try {
+                // console.log(formData);
+                const fileRes = await axios.post('files/uploads', formData,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                console.log(fileRes);
                 // setResponse(res.data.message)
+                values.image = fileRes.data.url
+                values.uid = currUser.id
+                // values.image = 'fuck u'
+                // console.log(values);
+                const res = await axios.post('posts', values,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                console.log(res);
 
             }
             catch (error) {
                 // console.log(error.message);
+                // console.log(error);
+                console.log(error.response.data.message);
                 // console.log(error);
                 // setResponse(error.response.data.message || error.message)
                 // console.log(error.response.data.message);
@@ -51,21 +67,17 @@ const Write = () => {
 
     });
 
-    useEffect(() => {
-        console.log(values);
 
-    }, [values])
     useEffect(() => {
         // console.log(values);
-        console.log('---------');
-        console.log(errors);
+        // console.log(errors);
 
     }, [errors])
 
 
     // console.log(description);
     return (
-        <form className='w-screen min-h-[80vh] flex max-w-screen-lg mx-auto py-10 gap-5' onSubmit={handleSubmit}>
+        <form className='w-screen min-h-[80vh] flex max-w-screen-lg mx-auto py-10 gap-5' onSubmit={handleSubmit} >
 
             <aside className='w-2/3 h-full'>
                 <input type="text" placeholder='Title' value={values.title} onChange={handleChange} name='title' onBlur={handleBlur} />

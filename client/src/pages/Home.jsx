@@ -11,6 +11,13 @@ const Home = () => {
     const category = useLocation().search;
     const navigate = useNavigate('')
 
+    const getText = (html) => {
+        const doc = new DOMParser().parseFromString(html, "text/html")
+        return doc.body.textContent;
+
+
+    }
+
     useEffect(() => {
 
 
@@ -20,7 +27,7 @@ const Home = () => {
                     //  { headers: { Authorization: token } }
                 )
                 setPosts(res.data)
-                // console.log(res.data);
+                console.log(res.data);
             }
             catch (err) {
                 console.log(err);
@@ -40,13 +47,15 @@ const Home = () => {
                     posts.map((post, i) =>
                         <div key={post.id} className={`flex w-3/4 mx-auto gap-10 my-10  ${i % 2 === 0 && 'flex-row-reverse'}`} >
                             {/* <div> */}
-                            {/* <img src={post.image} alt="error" className='w-96 img-card rounded-sm b' /> */}
+                            <img src={post.image} alt="error" className='w-96 img-card rounded-sm b' />
+                            <img src={`http://localhost:4000/${post.image}`} alt="error" className='w-96 img-card rounded-sm b' />
                             {/* </div> */}
                             <div>
                                 <Link to={`/post/${post.id}`}>
                                     {post.title}
                                 </Link>
-                                <p>{post.desc}</p>
+                                {/* <div dangerouslySetInnerHTML={{ __html: post.description }} /> */}
+                                <p>{getText(post.description)}</p>
                                 <button className='border-2 px-2 bg-cyan-400'>Read More</button>
                             </div>
                         </div>

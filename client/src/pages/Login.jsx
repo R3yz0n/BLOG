@@ -28,7 +28,7 @@ const Login = () => {
                 login(res.data);
 
                 setTimeout(() => {
-                    navigate('/')
+                    // navigate('/')
 
                 }, 400);
             }
