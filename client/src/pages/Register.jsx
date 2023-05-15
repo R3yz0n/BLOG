@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import { registrationSchema } from '../schema/index'
 import { BsCloudLightning } from 'react-icons/bs'
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const initialValues = { userName: '', email: '', password: '', confirmPassword: '' };
 const Register = () => {
@@ -24,7 +25,7 @@ const Register = () => {
             // console.log(values);
             const { confirmPassword, ...others } = values;
             try {
-                const res = await axios.post('auth/register', others)
+                const res = await axios.post(`${apiUrl}auth/register`, others)
                 // console.log(data);
                 // console.log(res);
                 // setResponse(res.data.message)

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../store/AuthContext'
 
 const Navbar = () => {
-    console.log('nav');
     const { currUser, logout } = UserContext();
     return (
         <section name='navbar' className='flex justify-around mt-5 w-screen' >

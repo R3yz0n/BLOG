@@ -7,6 +7,6 @@ router.get('/', postController.getPosts)
 router.get('/:id', postController.getPost)
 router.post('/', checkAuthentication.checkAuthentication, postController.addPost)
 router.delete('/:id', checkAuthentication.checkAuthentication, postController.deletePost)
-// router.update('/:id', postController.updatePost)
+// router.put('/:id', postController.updatePost)
 
 module.exports = router;

@@ -13,8 +13,19 @@ const Menu = ({ category }) => {
                 console.log(category);
                 const res = await axios.get(`/posts/?category=${category}`)
                 // const res = await axios.get(`/posts/?category=science`)
-                setSimilarPosts(res.data)
+
                 console.log(res);
+                console.log(res);
+                // others.img = 
+                for (let i = 0; i < res.data.length; i++) {
+                    // console.log(res.data[i]);
+                    res.data[i].img = `http://localhost:4000/${res.data[i].image}`
+
+                    console.log(res.data[i]);
+
+                }
+                setSimilarPosts(res.data)
+                console.log(similarPosts);
             }
             catch (error) {
                 console.log(error);
@@ -34,7 +45,7 @@ const Menu = ({ category }) => {
                 similarPosts.map((post) =>
                     <div className='flex flex-col gap-2 mx-auto w-2/3 py-8' key={post.id} >
 
-                        <img className='w-2/3' src='https://images.unsplash.com/photo-1680695918112-2909e0fc8796?ixlib=rb-4.0.3&ixid=Mn%20%20%20wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80' alt="" />
+                        <img className='w-2/3' src={post.img} alt="error" />
                         <p>{post.title}</p>
                         <button className='border-2 w-full bg-slate-400' >Read More</button>
                     </div>

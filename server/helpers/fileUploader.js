@@ -1,5 +1,6 @@
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs')
 
 const storage = multer.diskStorage(
     {
@@ -21,7 +22,7 @@ const fileFilter = (req, file, cb) => {
     // console.log(file);
     // console.log(req.file);
 
-    if (file.mimetype === 'images/jpeg' || file.mimetype === 'image/png') {
+    if (file.mimetype === 'images/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/webp') {
         cb(null, true);
     }
     else {
@@ -63,5 +64,9 @@ module.exports = {
             }
             next();
         });
-    }
-};
+    },
+
+
+}
+
+

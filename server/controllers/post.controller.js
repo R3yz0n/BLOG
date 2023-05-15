@@ -2,7 +2,6 @@ const express = require('express')
 const { posts, users } = require('../models')
 const models = require('../models')
 const jwt = require('jsonwebtoken')
-const u = require('../')
 
 
 const getPosts = async (req, res) => {
@@ -42,18 +41,16 @@ const getPost = async (req, res) => {
 
     }
     catch (err) {
+        if (err.name === 'SequelizeDatabaseError') {
+            res.status(400).json({ message: 'Invalid query parameter' });
+        }
         res.status(500).json({ message: "Something went wrong." })
 
     }
 
 
 
-    // const q = req.query.category ? "Select * from posts where cat=?" :
-    //     "Select * from posts"
-    // db.query(q, [req.query.category], (err, data) => {
-    //     if (err)
-    //         return res.send(err)
-    // })
+
 
 }
 const addPost = (req, res, user) => {
@@ -108,6 +105,9 @@ const deletePost = async (req, res) => {
     }
     catch (error) {
         console.log(error);
+        res.status(500).json({
+            message: "Something went wrong."
+        })
 
     }
 
@@ -115,7 +115,10 @@ const deletePost = async (req, res) => {
 
 }
 
-const updatePost = () => {
+const updatePost = (req, res) => {
+
+    const id = req.params.id
+    console.log(id);
 
 
 }

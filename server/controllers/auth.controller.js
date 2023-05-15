@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const joi = require('joi')
 const { check, validationResult } = require('express-validator');
+const env = require('dotenv');
+env.config();
+
 
 
 
@@ -116,7 +119,7 @@ const login = async (req, res) => {
             return res.status(400).json({ message: "Wrong username or password !" })
 
         // if usrnm and pw correct then send jwt toktne
-        const token = jwt.sign({ email: user.email, id: user.id, userName: user.userName, image: user.image }, "secret", { expiresIn: '10h' });
+        const token = jwt.sign({ email: user.email, id: user.id, userName: user.userName, image: user.image }, process.env.JWT_SECRET, { expiresIn: '10h' });
 
 
         console.log(user.dataValues);

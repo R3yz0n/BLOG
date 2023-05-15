@@ -6,11 +6,14 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { writePostSchema } from '../schema';
 import { UserContext } from '../store/AuthContext';
+import { useLocation } from 'react-router-dom';
 
-
-const initialValues = { title: '', description: '', image: '', category: '' };
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const Write = () => {
+    const state = useLocation().state
+    const initialValues = { title: state?.title || '', description: state?.description || '', image: state?.image || '', category: state?.category || '' };
+    console.log(state);
     const { token, currUser } = UserContext()
     const [file, setFile] = useState(null);
     // console.log(file);
@@ -35,7 +38,9 @@ const Write = () => {
             formData.append('file', file);
             try {
                 // console.log(formData);
-                const fileRes = await axios.post('files/uploads', formData,
+
+
+                const fileRes = await axios.post(`${apiUrl}files`, formData,
                     { headers: { Authorization: `Bearer ${token}` } }
                 )
                 console.log(fileRes);
@@ -44,7 +49,7 @@ const Write = () => {
                 values.uid = currUser.id
                 // values.image = 'fuck u'
                 // console.log(values);
-                const res = await axios.post('posts', values,
+                const res = await axios.post(`${apiUrl}posts`, values,
                     { headers: { Authorization: `Bearer ${token}` } }
                 )
                 console.log(res);
@@ -111,22 +116,22 @@ const Write = () => {
 
                     <h1>Category</h1>
                     {errors.category && touched.category ? <p className='text-red-600'>{errors.category}</p> : null}
-                    <input type="radio" name='category' onChange={handleChange} onBlur={handleBlur} value='art' id='art' />
+                    <input type="radio" checked={values.category === 'art'} name='category' onChange={handleChange} onBlur={handleBlur} value='art' id='art' />
                     <label htmlFor="art">Art</label>
 
-                    <input type="radio" name='category' onChange={handleChange} onBlur={handleBlur} value='science' id='science' />
+                    <input type="radio" checked={values.category === 'science'} name='category' onChange={handleChange} onBlur={handleBlur} value='science' id='science' />
                     <label htmlFor="science">Science</label>
 
-                    <input type="radio" name='category' onChange={handleChange} onBlur={handleBlur} value='technology' id='technology' />
+                    <input type="radio" checked={values.category === 'technology'} name='category' onChange={handleChange} onBlur={handleBlur} value='technology' id='technology' />
                     <label htmlFor="technology">Technology</label>
 
-                    <input type="radio" name='category' onChange={handleChange} onBlur={handleBlur} value='cinema' id='cinema' />
+                    <input type="radio" checked={values.category === 'cinema'} name='category' onChange={handleChange} onBlur={handleBlur} value='cinema' id='cinema' />
                     <label htmlFor="cinema">Cinema</label>
 
-                    <input type="radio" name='category' onChange={handleChange} onBlur={handleBlur} value='food' id='food' />
+                    <input type="radio" checked={values.category === 'food'} name='category' onChange={handleChange} onBlur={handleBlur} value='food' id='food' />
                     <label htmlFor="food">Food</label>
 
-                    <input type="radio" name='category' onChange={handleChange} onBlur={handleBlur} value='design' id='design' />
+                    <input type="radio" checked={values.category === 'design'} name='category' onChange={handleChange} onBlur={handleBlur} value='design' id='design' />
                     <label htmlFor="design">Design</label>
 
 

@@ -9,6 +9,7 @@ const Context = createContext();
 export const UserContext = () => useContext(Context)
 
 
+const apiUrl = process.env.REACT_APP_API_URL;
 const AuthContext = ({ children }) => {
     const navigate = useNavigate()
     const storedToken = JSON.parse(localStorage.getItem('token'));
@@ -31,7 +32,7 @@ const AuthContext = ({ children }) => {
 
     const logout = async () => {
         console.log('------');
-        const res = await axios.post('/auth/logout');
+        const res = await axios.post(`${apiUrl}auth/logout`);
         console.log(res);
         setCurrUser(null);
         setToken(null)

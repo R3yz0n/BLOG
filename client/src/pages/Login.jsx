@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import { loginSchmea } from '../schema'
 import { UserContext } from '../store/AuthContext'
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const initialValues = { userName: '', password: '' };
 
@@ -21,14 +22,14 @@ const Login = () => {
             setResponse('')
             // console.log(values);
             try {
-                const res = await axios.post('auth/login', values)
+                const res = await axios.post(`${apiUrl}auth/login`, values)
                 // console.log(data);
                 console.log(res);
                 // setResponse(res.data.message)
                 login(res.data);
 
                 setTimeout(() => {
-                    // navigate('/')
+                    navigate('/')
 
                 }, 400);
             }
