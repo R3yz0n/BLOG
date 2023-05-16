@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const joi = require('joi')
 const { check, validationResult } = require('express-validator');
+const env = require('dotenv');
+env.config();
+
 
 
 
@@ -96,7 +99,6 @@ const login = async (req, res) => {
     try {
 
         //check existing user
-        console.log('shs');
 
         const user = await models.users.findOne({
             where: {
@@ -117,15 +119,15 @@ const login = async (req, res) => {
             return res.status(400).json({ message: "Wrong username or password !" })
 
         // if usrnm and pw correct then send jwt toktne
-        const token = jwt.sign({ email: user.userName, id: user.id }, "secret");
+        const token = jwt.sign({ email: user.email, id: user.id, userName: user.userName, image: user.image }, process.env.JWT_SECRET, { expiresIn: '10h' });
 
-        // console.log(password);
+
         console.log(user.dataValues);
         const { id, email, userName } = user;
 
         //gpt days for every subsequent reuest made to server by client it is automatically sent in header
-        res.cookie("access_token", token, { maxAge: 300000, httpOnly: true }).status(200).json({ id, email, userName });
-        // res.status(200).json({ message: "Login sucessfull !", token: token })
+        // res.cookie("access_token", token, { maxAge: 300000, httpOnly: true }).status(200).json({ id, email, userName });
+        res.status(200).json({ message: "Login sucessfull !", token: token })
 
 
 
