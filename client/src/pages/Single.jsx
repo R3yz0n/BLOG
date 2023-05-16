@@ -70,7 +70,7 @@ const Single = () => {
 
             console.log(post)
 
-            const deleteFile = axios.delete(`${apiUrl}files/${post.image}`,
+            const deleteFile = await axios.delete(`${apiUrl}files/${post.image}`,
                 { headers: { Authorization: `Bearer ${token}` } }
 
             )
