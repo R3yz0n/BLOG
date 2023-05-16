@@ -11,6 +11,8 @@ import Footer from "./components/Footer";
 function App() {
 
   const { pathname } = useLocation();
+  const location = useLocation()
+
   return (
     <>
       {
@@ -19,7 +21,7 @@ function App() {
       }
 
 
-      <Routes>f
+      <Routes>
 
 
         <Route path='/' element={<Home />} />
