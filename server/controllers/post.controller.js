@@ -115,10 +115,87 @@ const deletePost = async (req, res) => {
 
 }
 
-const updatePost = (req, res) => {
+const updatePost = async (req, res) => {
 
-    const id = req.params.id
-    console.log(id);
+    console.log('hello');
+    // console.log(1);
+    const id = req.params.id;
+
+
+
+    try {
+        const isExists = await posts.findOne({ where: { id: req.params.id } })
+        // console.log(isExists);
+        if (!isExists)
+            return res.status(404).json({
+                message: "Post not found."
+            })
+    }
+    catch (error) {
+
+        res.status(500).json({
+            message: "Something went wrong",
+            error: error
+        })
+
+    }
+
+    const postToUpdate = {
+        title: req.body.title,
+        image: req.body.image,
+        description: req.body.description,
+        category: req.body.category,
+        uid: req.body.uid,
+    }
+    // console.log(postToCreate);
+
+
+    try {
+        const result = await models.posts.update(postToUpdate, { where: { id: id, uid: req.body.uid } })
+
+        if (!result[0]) {
+
+
+            return res.status(409).json(
+                {
+                    message: "Update unsucessful."
+                }
+            )
+
+            //this also works fine xd
+
+            // console.log('raannnn');
+            // const error = new Error()
+            // error.message = "Update unsucessfull."
+            // error.status = 400;
+            // console.log(error);
+
+            // throw error
+        }
+
+        res.status(200).json(
+            {
+                message: "Update sucessfull.",
+                post: postToUpdate
+            }
+        )
+
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Something went wrong.",
+            error: error
+        })
+
+
+    }
+
+
+
+
+
+
+
 
 
 }

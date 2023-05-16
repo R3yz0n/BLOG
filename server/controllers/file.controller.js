@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const fileUploader = require('../helpers/fileUploader');
 
 const uploadFile = (req, res) => {
 
@@ -88,11 +89,13 @@ const deleteFile = (req, res) => {
 }
 
 
-const updateFile = (req, res, next) => {
+
+const updateFile = async (req, res, next) => {
+
     const filename = req.params.filename;
     const filePath = path.join(__dirname, '../uploads', filename);
-    // console.log(filename);
-    // console.log(filePath);
+    console.log(filename);
+    console.log(filePath);
 
     // Check if the file exists
     fs.stat(filePath, (err, stats) => {
@@ -102,17 +105,56 @@ const updateFile = (req, res, next) => {
 
         // Delete the file
         fs.unlink(filePath, (err) => {
+
+            console.log('unlink');
+
             if (err) {
                 return res.status(500).json({ message: 'Failed to delete the file.' });
             }
 
             // return res.status(200).json({ message: 'File deleted successfully.' });
-            next()
+            console.log('deleted');
         });
     });
 
 
-    next()
+
+
+
+
+
+
+
+
+
+    if (!req.file) {
+        return res.status(400).json({ message: 'Image must be uploaded.' });
+    }
+
+    // console.log(req.file.filename);
+    console.log('first upload');
+    // console.log(req.file);
+
+
+    if (req.file.filename) {
+
+
+        res.status(201).json({
+            message: "Image updated sucessfully.",
+            url: req.file.filename
+        })
+    }
+
+    else {
+        res.status(500).json(
+            {
+                message: "Something went wrong."
+            }
+        )
+    }
+
+
+
 
 
 

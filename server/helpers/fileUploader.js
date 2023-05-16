@@ -67,6 +67,34 @@ module.exports = {
     },
 
 
+    update: function (req, res, next) {
+
+
+
+
+        uploadMiddleware(req, res, function (err) {
+            // console.log(req);
+            // console.log(err);
+            console.log('--------');
+
+            // console.log(req.file);
+            if (err) {
+                // Handle the error thrown by the file filter
+                return res.status(400).json({ message: err.message });
+            }
+            else if (err instanceof multer.MulterError) {
+                console.log('111111');
+                return res.status(400).json({ message: err.message });
+
+            }
+
+            console.log('next');
+
+            next()
+        });
+    },
+
+
 }
 
 

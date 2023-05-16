@@ -29,12 +29,13 @@ const Single = () => {
         const fetchData = async () => {
 
             try {
-                const { data } = await axios.get(`${apiUrl}posts/${postId}`)
+
+
+                const { data } = await axios.get(`${apiUrl}posts/${postId}`,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
                 const { user, ...postData } = data;
                 // console.log(data);
-                // console.log(postData);
-                // postData.img = `${apiUrl}files/${postData.image}`
-                // const temp = await axios.get(`${apiUrl}files/${postData.image}`)
 
                 // a good practice
                 const { data: imageData } = await axios.get(`${apiUrl}files/${postData.image}`, { responseType: 'blob' });
@@ -69,7 +70,10 @@ const Single = () => {
 
             console.log(post)
 
-            const deleteFile = axios.delete(`${apiUrl}files/${post.image}`)
+            const deleteFile = axios.delete(`${apiUrl}files/${post.image}`,
+                { headers: { Authorization: `Bearer ${token}` } }
+
+            )
             console.log(deleteFile);
 
 

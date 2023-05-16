@@ -13,7 +13,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 const AuthContext = ({ children }) => {
     const navigate = useNavigate()
     const storedToken = JSON.parse(localStorage.getItem('token'));
-    const location = useLocation()
+    const location = useLocation();
 
     const [currUser, setCurrUser] = useState(null);
     const [token, setToken] = useState(storedToken || null);

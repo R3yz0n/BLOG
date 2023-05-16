@@ -7,16 +7,15 @@ const fileController = require('../controllers/file.controller');
 const fileUploader = require('../helpers/fileUploader');
 const { checkAuthentication } = require('../middleware/authentication');
 
-router.post('/', fileUploader.upload, fileController.uploadFile);
+router.post('/', checkAuthentication, fileUploader.upload, fileController.uploadFile);
 
-router.delete('/:filename', fileController.deleteFile);
+router.delete('/:filename', checkAuthentication, fileController.deleteFile);
 
-//app.js
-
-//file routes
 router.get('/:filename', fileController.getFile)
 
-router.put('/:filename', fileController.updateFile, fileUploader.upload, fileController.uploadFile)
+// suru ma delete tespaxi multer middleware
+
+router.put('/:filename', checkAuthentication, fileUploader.update, fileController.updateFile)
 
 
 

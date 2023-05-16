@@ -7,13 +7,14 @@ import axios from 'axios';
 import { writePostSchema } from '../schema';
 import { UserContext } from '../store/AuthContext';
 import { useLocation } from 'react-router-dom';
+import { ImCog } from 'react-icons/im';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Write = () => {
     const state = useLocation().state
     const initialValues = { title: state?.title || '', description: state?.description || '', image: state?.image || '', category: state?.category || '' };
-    console.log(state);
+    // console.log(state);
     const { token, currUser } = UserContext()
     const [file, setFile] = useState(null);
     // console.log(file);
@@ -30,7 +31,12 @@ const Write = () => {
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues, validationSchema: writePostSchema,
 
-        onSubmit: async (values, action) => {
+        onSubmit: !state ? async (values, action) => {
+            if (!file) {
+                console.log('upload a file');
+                return;
+
+            }
             // setResponse('')
             console.log(1);
             const formData = new FormData();
@@ -42,17 +48,21 @@ const Write = () => {
 
                 const fileRes = await axios.post(`${apiUrl}files`, formData,
                     { headers: { Authorization: `Bearer ${token}` } }
+
+
                 )
-                console.log(fileRes);
-                // setResponse(res.data.message)
                 values.image = fileRes.data.url
                 values.uid = currUser.id
-                // values.image = 'fuck u'
-                // console.log(values);
                 const res = await axios.post(`${apiUrl}posts`, values,
                     { headers: { Authorization: `Bearer ${token}` } }
                 )
                 console.log(res);
+
+
+                // setResponse(res.data.message)
+
+                console.log(values);
+
 
             }
             catch (error) {
@@ -64,6 +74,52 @@ const Write = () => {
                 // console.log(error.response.data.message);
                 // setError(error.response.data.message);
             }
+
+
+        } : async (values, action) => {
+            if (!file) {
+                console.log('upload a file');
+                return;
+
+            }
+
+            console.log('state');
+            // console.log(state);
+            const formData = new FormData();
+
+            formData.append('file', file);
+            try {
+
+                console.log(state.image);
+                const fileRes = await axios.put(`${apiUrl}files/${state.image}`, formData,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                values.image = fileRes.data.url
+                values.uid = currUser.id
+                console.log(values);
+                console.log('here');
+
+                const res = await axios.put(`${apiUrl}posts/${state.id}`, values,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                console.log(res);
+
+
+                // setResponse(res.data.message)
+
+                console.log(values);
+
+
+            }
+            catch (error) {
+                console.log('------');
+                console.log(error.response.data.message);
+                console.log(error);
+                // setResponse(error.response.data.message || error.message)
+            }
+
+
+
 
 
         }
