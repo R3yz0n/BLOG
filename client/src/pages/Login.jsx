@@ -82,7 +82,7 @@ const Login = () => {
 
 
                     <div className='w-[50%]'>
-                        <h1 className='text-[2.1rem] mx-auto font-[900] font-sans'>Log In</h1>
+                        <h1 className='text-[2.1rem] mx-auto font-[900] font-sans'> Log In</h1>
 
 
                         <div className='flex flex-col space-y-[2rem] h-[8rem] '>
